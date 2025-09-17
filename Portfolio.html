@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html  style="margin:100px">
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1 style="text-align:center;">Sotheara Eng's Computer Engineering Portfolio</h1>
+
+<p style="text-align:center;">
+  This document will provide a detailed showcase of the many school-issued and personal project that 
+  I've completed related to subjects such as digital electronics, and software programs.
+</p>
+<hr>
+<h2>About me</h2>
+  <p>I am a Computer Engineering student at McMaster University frfr</p>
+<hr>
+
+<h2>Portfolio Structure</h2>
+  <p>
+    Each project showcased in this portfolio will have a similar structure that will showcase the following:
+    <ul>
+      <li>Skills and Concepts learned or used</li>
+      <li>Components used</li>
+      <li>Rationale and inspirations for the project</li>
+      <li>Design process and detailed analysis of key components</li>
+      </ul>
+  </p>
+  <p>
+    The lengthiest of parts being the Design process and analysis.Note that the project order is also latest to earliest, reverse chronological. 
+    I will have the duration of the projects as well.
+  </p>
+<hr>
+
+<h2>LCD Console Games (June - August 2025)</h2>
+  <p><b>Concepts:</b> Class and algorithm design, LCD screen libraries, finite state machine regarding the game loops and menu logic</p>
+  <p><b>Skills learned or used:</b> Soldering for I2C module and LCD Screens, C++/C programming using VScode and Arduino IDE</p>
+  <p><b>Components used:</b> 2004A and qapass 1602a LCD screens soldered to an I2C module each, an analog joystick, an arduino uno and jumper wires</p>
+  <div class="grid2">
+    <div>
+      <figure>
+        <img src="LCD Photos\PelletPatrolTitle.jpg" alt="Pellet Patrol title screen" style="width:100%">
+        <figcaption>Pellet Patrol Title Screen</figcaption>
+    </figure></div>
+    <div><figure>
+      <img src="LCD Photos\DodgeTitle.jpg" alt="Dodge!! title screen" style="width:100%">
+      <figcaption>Dodge!! Title Screen</figcaption>
+    </figure></div>
+  </div>
+  <h3>Inspiration</h3>
+    <p>
+      During the winter break of the 2024-2025 academic year, I was exploring arduino circuits and various peripherals that I had available. 
+      The one that intrigued me the most was the LCD screen since it could be used to output anything my small projects required. 
+      Unfortunately, I hadn't found any, and the winter break was quickly over. 
+      Coming the break after my second year (2025), I took it upon myself to buy two sizes of LCD screen and their I2C modules to 
+      make hooking them up easier. Once they came I had to learn how to solder and put these pieces together as well. I then searched for libraries
+      which allowed me to set up the LCDs for use. Amongst the base funcions of the LCD screen, I came across the <b>custom character functions</b>. 
+      These functions allowed for binary digits to display in one of the LCD's tiles as its own character. This allowed for small pixel art within the 
+      8x5 pixel grid tiles. Larger arts could also be made with custom characters in adjacent tiles. With this, <b>sprites</b> were able to be displayed, 
+      which gave me the idea to create a couple of games with it. The first things that was to be made was the <b>Drawing Class.</b>
+    </p>
+  <h3>Drawing Class</h3>
+    <p>
+      The goal of this class was to handle pixel art of any tile height or width. It should allow the user to print, 
+      clear and move the drawing any where on the LCD Screen. Some added features are row and column shifting, which allows 
+      for the entire drawing to be shifted as well. More details on how the class's functionality are shown below.
+    </p>
+<b>Pictures showing print and column/row shifting</b>
+    <h4>How Custom Characters Work</h4>
+      <p>
+        The LCD screen can take an array of 8 integers which represent each of the rows in one of the tiles. 
+        These integers then code for a 5 bit display for that row, and then stacked onto each other to create the image. 
+        The integers are ideally represented in either binary or hexidecimal for readability. The screen then stores this 
+        array in one of 8 memory slots selected by the user. These memory slots then serve as an identifier of that character, 
+        and is used for its print function. Note: a tile is where the character resides on an LCD screen.
+      </p>
+      <figure>
+        <img src="LCD Photos/HextoDrawing.png" alt="Hex/binary to Drawing Conversion" style="width:75%;">
+        <figcaption>Hex to Binary map to Drawing Conversion</figcaption>
+      </figure>
+<!--Choose the functions to talk about-->
+    <h4>Data Members</h4>
+      <figure>
+        <img src="DrawingClass\DataMembers.png" alt="LiquidCrystal_I2C& lcd;
+                uint8_t xpos, ypos, height, width, LCD_WIDTH, LCD_HEIGHT;
+                uint8_t* memslot;
+                uint8_t** drawing;" style="width:50%">
+        <figcaption>Drawing Class Private Data Members</figcaption>
+      </figure>
+      <ul>
+        <li><b>LiquidCrystal_I2C& lcd:</b>The currently used LCD class object</li>
+        <li>
+          <b>xpos,ypos:</b>The x and y position of the drawing's top left tile on the LCD. 
+          That point signifies where the draw() function will start printing the tiles of the drawing.
+        </li>
+        <li><b>Height, width:</b>The tile height and width of the drawing.</li>
+        <li><b>LCD_WIDTH and LCD_HEIGHT:</b>Tile width and height of the screen.</li>
+        <li><b>Memslot:</b>An integer array storing the memory slot of each tile in the drawing.</li>
+        <li>
+          <b>Drawing:</b>A double integer array that stores each tile of the drawing which contains 
+          the 8 integers that represents the bit map of that tile. Note that the rows of drawing are 
+          not seperated, ie, they are in this array linearly.
+        </li>
+        <b>Visually explain how the drawing double array is set up</b>
+      </ul>
+    <h4>Draw Function</h4>
+        <figure>
+          <img src="DrawingClass/Draw.png" alt="Draw Function" style="width:50%" >
+          <figcaption>Implementation of the Draw Function</figcaption>
+        </figure>
+      <p>
+        The draw function allows the object to be printed out starting from its
+        x and y position. It works by first creating each of the characters and storing
+        each tile into the object's designated memory slots, then The nested for loop goes through and
+        sets the LCD cursor to the each tile's position, prints out the tile, and eventually creates the drawing.
+      </p>
+    <h4>Clearing Function</h4>
+      <figure>
+        <img src="DrawingClass/Clearimage.png" alt="Clear Image" style="width:50%">
+        <figcaption>Implement of the Clearing function</figcaption>
+      </figure>
+      <p>
+        The clear function has the same idea as the draw function, it goes over each tile in the drawing
+        but instead of drawing that tile, it erases the drawing by printing a space over it, effectively 
+        erasing the drawing. 
+      </p>
+    <h4>Column Shift Algorithm and Derivation</h4>
+      <div class="grid2" style="gap:0px;">
+        <div>
+          <figure>
+            <img src="DrawingClass/Colshiftdown.png" alt="Colshiftdown">
+            <figcaption>Algorithm for shifting a selected column down</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="DrawingClass/Colshiftup.png" alt="Colshiftup" style="width:125%">
+            <figcaption>Algorithm for shifting a selected column up with comment explanation</figcaption>
+          </figure>
+        </div>
+      </div>
+      <p>
+        These algorithms shift a selected column of a drawing either up or down, and is 
+        used to create certain animations and is also used for shifting the entire image up or down.
+        The challenge here is the fact that each column is not easily accessible since the data of a row
+        is stored as an integer. Another thing is that the tiles are stored in a one-dimensional order, 
+        which means that accessing tiles that contain the column isn't as straight forward as well. The approach
+        goes as follows:
+      </p>
+      <h5>Visual Explanation</h5>
+        <p>
+          Consider the case where a single column of 1-bit values needs to be shifted up. 
+          The make sure the first cell is shifted down to the bottom cell, it is saved into 
+          a temporary variable. The column will then be iterated through with a two cell window.
+          This window compares the two cells and changes the first cell depending on the second. 
+          Since this algorithm is working with integers, to switch from a 0 to 1, the cell must be "set"
+          or or'd with 1, ie, cell|=1. To switch from 1 to 0, it must be "cleared" or and'd with 0, ie.
+          cell&=0. 1 to 1, and 0 to 0 has no change. The decision on whether to clear or set the bit 
+          depends on whether the first bit is larger or smaller than the second bit. If larger, this
+          means that the current bit is a 1, and the second is 0, meaning that this bit should be cleared. 
+          If smaller, this measnt that the current bit is a 0 and the second is 1, meaning the bit must 
+          be set to shift up the values. This continues until the second last cell is checked. The final cell 
+          is then compared to the temperary variable stored intially. With more columns, the "cell", which
+          is now a row, would have to use bitmasking techniques to set or clear the correct column. This is 
+          why the power variable is used in the code and is why col%CHAR_WIDTH is "mirrored" and used
+          to bit shift 1 to that power. 
+        </p>
+        <div class="grid2">
+          <div>
+            <figure>
+              <img src="LCD Photos/TempandFirstCells.png" alt="First cells">
+              <figcaption>Initial set up</figcaption>
+            </figure>
+          </div>
+          <div>
+            <figure>
+              <img src="LCD Photos/SecondCells.png" alt="Iterating through the column">
+              <figcaption>Window advances</figcaption>
+            </figure>
+          </div>
+          <div>
+            <figure>
+              <img src="LCD Photos/FinalCells.png" alt="Last two cells are checked at the end">
+              <figcaption>Last two cells are checked eventually</figcaption>
+            </figure>
+          </div>
+          <div>
+            <figure>
+              <img src="LCD Photos/Finalresult.png" alt="Final Comparison with the temp and the final cell">
+              <figcaption>The column gets shifted successfully</figcaption>
+            </figure>
+          </div>
+        </div>
+      <h5>Indexing of tiles and rows</h5>
+        <p>
+          Since the drawing is a double array with the structure of drawing[tile][row], 
+          and represents a drawing with a set height and width, the bounds of tile is 
+          0 to height*width - 1, and the bounds of row is 0 to CHAR_HEIGHT-1 (in this case
+          the character height is 8) for each tile. For the algorithm, the first tile of the column, first row needs to be 
+          saved in temp for shifting up, and the last tile of the column, last row is needed for shifting down.
+          The total loops needed for the rest of the rows is then height*CHAR_HEIGHT-1, where 
+          height is the tile height of the drawing. With the iterating variable i and col parameter, what's needed is 
+          a function that maps i and col to the correct tile index of the drawing. Another function is needed 
+          to map i and col to the correct row as well. Another restriction is that it must work for any i+1
+          Thus, this function must handle cases where the next row is not in the same tile of the 
+          current row when doing the comparisons.
+        </p>
+        <figure>
+          <img src="DrawingClass/DrawingVarLayout.png" alt="Drawing variable layout" style="width: 50%;">
+          <figcaption>Example Drawing with the tile, i/row, and column values</figcaption>
+        </figure>
+        <p>
+          To map the tiles using some function f(i,col), consider any of the columns in the picture above. It can be
+          realized that each tile that is included is 4 tiles or a width's worth apart from each other. There is also 
+          a starting tile that is dependent on which column is selected. This means that a discrete linear function is 
+          required. For the starting tile, the function uses the column variable since tile column changes depending on
+          the column. Since in the example, 0 to 4 maps to tile 0, 5 to 9 map to tile 1, etc. The expression that determines
+          the starting tile can be col/CHAR_WIDTH, this value is then floor. In C++, the division operator automatically 
+          does this through integer division. For the linear increase, this is dependant on i. From the diagram, for every 8 rows, 
+          the tile index is increased by the width of the drawing. Using integer division again, it can be seen that 
+          i can be integer divided by the CHAR_HEIGHT to determine the multiple of the width to add onto the starting tile. 
+          Thus, (i/CHAR_HEIGHT)*width is used to represent this. Therefore, the tile of any drawing can be expressed as:
+        </p>
+        <figure>
+          <img src="TextImages/f(i,col).png" alt="f(i,col)=(i/CHAR_HEIGHT)*width+col/CHAR_WIDTH" style="width:50% ;">
+        </figure>
+        <p>
+          To map the rows of a tile using i is rather easy. By inspection, finding the remainder of the i/CHAR_HEIGHT gives
+          us the correct index for the row within that tile.
+        </p>
+        <p>
+          Therefore, any row within the drawing can be accessed with:
+        </p>
+        <figure>
+          <img src="TextImages/drawing[][].png" alt="drawing[f(col,i)][i%CHAR_HEIGHT]" style="width: 50%;">
+        </figure>
+        <p>
+          Using this, the indexes for the first tile first row, can be found to be drawing[f(0,col)][0%CHAR_HEIGHT] which
+          is simplified to drawing[col/CHAR_WIDTH][0]. The index for the last tile last row will use i=CHAR_HEIGHT*height-1:<br> <br>
+          drawing[((CHAR_HEIGHT*height-1)/CHAR_HEIGHT)*width+col/CHAR_WIDTH][(CHAR_HEIGHT*height-1)%CHAR_HEIGHT]<br>
+          drawing[(height-1)*width+col/CHAR_WIDTH][CHAR_HEIGHT-1]<br> <br>
+          <i>Note:</i> by integer division, (CHAR_HEIGHT*height-1)/CHAR_HEIGHT=height-1 since CHAR_HEIGHT*height-1 is one less than 
+          some multiple of CHAR_HEIGHT, thus the answer for CHAR_HEIGHT>1, is 1 less than that multiple, ie. height-1.
+        </p>
+    <h4>Row Shift Algorithm and Derivation</h4>
+      <div class="grid2" style="gap:0px;">
+        <div>
+          <figure>
+            <img src="DrawingClass/Rowshiftleft.png" alt="Rowshiftleft">
+            <figcaption>Algorithm for shifting a selected row leftward</figcaption>
+          </figure>
+        </div>
+        <div>
+          <figure>
+            <img src="DrawingClass/Rowshiftright.png" alt="Rowshiftright">
+            <figcaption>Algorithm for shifting a selected row rightward</figcaption>
+          </figure>
+        </div>
+      </div>
+      <p>
+        These algorithms shift a selected row of a drawing either left or right, and has the same goals as the 
+        vertical shifts covered above. Unlike the vertical shifts, row shifts are a lot simpler to understand 
+        understand and also implement due to bit shifting operations offered in C++ and the fact that the row is
+        part of the indexing for drawing. The only challenges that arise are similar to the vertical shifts: 
+        shifting bits inbetween borders, and wrap-around from one end to the other. The approach to this algorithm 
+        goes as follows: 
+      </p>
+      <h5>Visual Explanation</h5>
+        <p>
+          Shifting right and shifting left have slightly different processes due to the fact that the row is an 
+          integer itself. Thus wrap around and shifting involve increasing or decreasing the value. You can also 
+          use bitmasking techniques as well. Let's consider a single row and how the shifting would work:
+        </p>
+        <p>
+          To <b>shift right</b>, the row must be shifted to the right or mathematically divided by 2. Before this, to implement
+          wrap-around, the least significant bit is saved. Once the shifting is done, if the saved bit is 1, 10000 is added
+          onto the row to add the 1 onto the most significant bit. Since shifting right defaults the first bit to 0, if the 
+          saved bit is 0, then nothing is to be done. 
+        </p>
+        <p>
+          To <b>shift left</b>, the most significant bit must be saved. Then, the row is shift to the left, or multiplied by 2. This
+          might cause the row to have 6 bits. So to ensure this doesn't cause any issues, the row is then bitmasked to 5 bits 
+          using row&=100000-1 which is simply row&=11111. Then the most significant bit is added onto the row.   
+        </p>
+        <p>
+          <b>PICTURES FOR ONE ROW HERE</b>
+        </p>
+        <p>
+          Multiple rows and tiles and stuff fr
+        </p>
+        <p>
+          <b>PICTURES FOR MULTPLE ROWS HERE</b>
+        </p>
+    <h4>Movement Functions</h4>
+    <h4>Da rest of em!</h4>
+<hr>
+
+<h2>Room Mapper using the MSP432E401Y Microcontroller and VL53L1X ToF Sensor</h2>
+<hr>
+
+<h2>CMOS XOR Gate Design and Analysis</h2>
+<hr>
+
+<h2>3V DC Voltage Source from 120V RMS AC Source Analysis</h2>
+<hr>
+
+<h2>Autonomous SumoBot for McMaster's SumoBot competition</h2>
+<hr>
+
+<h2>Snake Game Coded in C++</h2>
+<hr>
+
+<h2>Space Invaders X</h2>
+<hr>
+
+
+</body>
+<html>

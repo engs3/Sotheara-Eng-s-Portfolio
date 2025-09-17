@@ -1,0 +1,88 @@
+p
+{
+	text-align:left;
+   	font-family: "Times New Roman";
+   	font-weight: normal;	
+	text-indent: 50px;
+}
+
+h1 
+{
+	text-align: left;
+   	font-family: "Times New Roman";
+   	font-weight: bold;
+}
+h2 
+{
+	text-align: left;
+   	font-family: "Times New Roman";
+   	font-weight: bold;
+}
+h3 
+{
+	text-align: left;
+   	font-family: "Times New Roman";
+   	font-weight: bold;
+}
+h4 
+{
+	text-align: left;
+   	font-family: "Times New Roman";
+   	font-weight: bold;
+	text-indent: 25px;
+}
+h5
+{
+	text-align: left;
+   	font-family: "Times New Roman";
+   	font-weight: bold;
+	text-indent: 37.5px;
+}
+
+
+img
+{
+	width:100%;
+	height:auto;
+	margin:auto;
+	text-align: center;
+}
+.grid
+{
+ 	display: grid;
+  	grid-template-columns: 33% 33% 33%;
+	margin:0px;
+	gap:10px;
+	align-items:center;
+}
+.grid2
+{
+ 	display: grid;
+  	grid-template-columns: 50% 50%;
+	margin:0px;
+	gap:10px;
+	align-items:center;
+}
+/*Custom Class must have a period before their name in the CSS styling*/
+.grid4
+{
+ 	display: grid;
+  	grid-template-columns: 25% 25% 25% 25%;
+	margin:0px;
+	align-items:center;
+}
+figcaption
+{
+	text-align:center;
+	font-family: 'Times New Roman', Times, serif;
+}
+pre
+{
+	text-align:left;
+   	font-family: "Times New Roman";
+   	font-weight: normal;
+}
+figure 
+{
+  text-align: center; /* centers both img and figcaption */
+}
