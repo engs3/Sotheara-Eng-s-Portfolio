@@ -316,21 +316,160 @@
   In construction
 </h1>
 <h2>Room Mapper using the MSP432E401Y Microcontroller and VL53L1X ToF Sensor</h2>
+  <div class="grid2">
+    <div>
+      <figure>
+        <img src="Room Mapper/Final Schematic.png"  style="width:50%">
+        <figcaption>Final Schematic of the Room Mapper</figcaption>
+    </figure></div>
+    <div><figure>
+      <img src="Room Mapper/Connected Room mapper.png" style="width:100%">
+      <figcaption>Physical Implmentation of the Room Mapper </figcaption>
+    </figure></div>
+  </div>
+  <ul>
+    <li>
+      Implemented a low-cost alternative to Lidar mapping with ToF sensor data processed via UART/I2C and visualized in 3D 
+      using Python Open3D
+    </li>
+    <li>
+      Programmed 3D hallway mapping at 32-point resolution per layer (up to 100 layers, 30m) using ToF sensor data. 
+      Constrained by 4m ToF sensor range.
+    </li>
+    <li>
+      Utilizes the ToF sensor and I2C and UART protocols to acquire and process the data to a Python script
+    </li>
+  </ul>
 <hr>
 
 <h2>CMOS XOR Gate Design and Analysis</h2>
+  <figure>
+    <img src="XOR Gate project/XOR Gate.png" style="width: 50%;">
+  </figure>
+  <ul>
+    <li>
+      Used CMOS methodology to create the design on LTspice and determined ideal PMOS and NMOS sizes of 10/1 and 4/1 respectively
+    </li>
+    <li>
+      Used the AD3 Oscilloscope to determine the high and low voltages when either input changes, 
+      and tested the functionality using its a square wave gen of 0-5V
+    </li>
+    <li>
+      Measured the propogation delay of the high - low and the low - high transitions of the gate
+    </li>
+  </ul>
 <hr>
 
 <h2>3V DC Voltage Source from 120V RMS AC Source Analysis</h2>
+  <figure>
+    <img src="3V DC source/3V DC Source schematic.png" style="width: 50%;">
+    <figcaption>
+      3V DC Source schematic
+    </figcaption>
+  </figure>
+  <ul>
+    <li>
+      Designed and built a dc power supply that delivers 10 mA at 3V ± 0.1V from a source that is 120V (rms) at 1 kHz
+    </li>
+    <li>
+      Calculated transformer coil ratio to transform 120V RMS to 4.4V
+    </li>
+    <li>
+      Implemented a full bridge rectifier and a capacitive filter with a 107 code capacitor
+    </li>
+    <li>
+      Project was done without a source due to safety concerns and only used as a learning experience
+    </li>
+  </ul>
 <hr>
 
 <h2>Autonomous SumoBot for McMaster's SumoBot competition</h2>
+  <figure>
+    <img src="Sumo Bot/SumoBot.jpg" style="width: 50%;">
+    <figcaption>
+      Physical Sumo Bot
+    </figcaption>
+  </figure>
+  <ul>
+    <li>
+      Designed a 10×10 cm robot with ultrasonic scanning and autonomous attack maneuvers, competing under contest rules.
+    </li>
+    <li>
+      Developed a 360 degree scanning algorithm using an ultrasonic sensor to locate and attack opponents
+    </li>
+    <li>
+      Implemented, spinning, and charging maneuvers by sending high signals to the TC1508A for a certain amount of time
+    </li>
+    <li>
+      Sensing was done by two ultrasonic sensors which let the rotational scanning to be done with rotations of less than 180 degrees. 
+    </li>
+    <li>
+      Chassis was desgined in Autodesk Inventor to hold all the circuitry and push other competitors out of the ring
+    </li>
+  </ul>
 <hr>
 
 <h2>Snake Game Coded in C++</h2>
+  <figure>
+    <img src="Snake Porject/Gameplay screenshot.png" style="width: 50%;">
+    <figcaption>
+      Gameplay screenshot involving instructions, score and a "special" oscilating food
+    </figcaption>
+  </figure>
+  <ul>
+    <li>
+      Applied object-oriented design to recreate classic Snake on a scalable grid, 
+      implementing mechanics for collision detection, scoring, and special items
+    </li>
+    <li>
+      Repurposed an item generation function from a previous project to spawn 1 or 
+      5 normal or special food items
+    </li>
+    <li>
+      Composition was used to implement classes for: game mechanics (win/lose conditions, scoring,
+       board size), snake body (collision handling and growth)
+    </li>
+    <li>
+      Special foods gave 5 points and changed the speed of the game to random level from 1 to 5. 
+    </li>
+  </ul>
 <hr>
 
 <h2>Space Invaders X</h2>
+  <div class="grid2">
+    <div>
+      <figure>
+        <img src="Space Invaders X/Title page.png" >
+        <figcaption>Title Screen</figcaption>
+    </figure></div>
+    <div><figure>
+      <img src="Space Invaders X/Tutorial.png">
+      <figcaption>Tutorial Screen</figcaption>
+    </figure></div>
+    <div><figure>
+      <img src="Space Invaders X/Regular Wave.png">
+      <figcaption>Regular Wave of Enemies</figcaption>
+    </figure></div>
+    <div><figure>
+      <img src="Space Invaders X/Boss Wave Phase 1.png">
+      <figcaption>Boss Wave. Happens every 5 waves</figcaption>
+    </figure></div>
+  </div>
+
+  <ul>
+    <li>
+      Modernized Space Invaders with unique skills, animated pixel-art 
+      sprites, and an autonomous 3-phase boss enemy
+    </li>
+    <li>
+      Revamped Space Invaders that includes normal and ultimate skills 
+      for players and enemies drop special powerups on death
+    </li>
+    <li>
+      Pixel-art sprites and animation implemented using Aseprite and Unity Animation
+    </li>
+  </ul>
+
 <hr>
 
 </body>
