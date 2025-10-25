@@ -315,7 +315,7 @@
 <h1>
   In construction
 </h1>
-<h2>Room Mapper using the MSP432E401Y Microcontroller and VL53L1X ToF Sensor</h2>
+<h2>Room Mapper using the MSP432E401Y Microcontroller and VL53L1X ToF Sensor (March -April 2025)</h2>
   <div class="grid2">
     <div>
       <figure>
@@ -342,7 +342,7 @@
   </ul>
 <hr>
 
-<h2>CMOS XOR Gate Design and Analysis</h2>
+<h2>CMOS XOR Gate Design and Analysis March 2025</h2>
   <figure>
     <img src="XOR Gate project/XOR Gate.png" style="width: 50%;">
   </figure>
@@ -360,7 +360,7 @@
   </ul>
 <hr>
 
-<h2>3V DC Voltage Source from 120V RMS AC Source Analysis</h2>
+<h2>3V DC Voltage Source from 120V RMS AC Source Design and Analysis (February 2025)</h2>
   <figure>
     <img src="3V DC source/3V DC Source schematic.png" style="width: 50%;">
     <figcaption>
@@ -383,7 +383,7 @@
   </ul>
 <hr>
 
-<h2>Autonomous SumoBot for McMaster's SumoBot competition</h2>
+<h2>Autonomous SumoBot for McMaster's SumoBot competition (January 2025)</h2>
   <figure>
     <img src="Sumo Bot/SumoBot.jpg" style="width: 50%;">
     <figcaption>
@@ -409,7 +409,7 @@
   </ul>
 <hr>
 
-<h2>Snake Game Coded in C++</h2>
+<h2>Snake Game Coded in C++ (November 2024)</h2>
   <figure>
     <img src="Snake Porject/Gameplay screenshot.png" style="width: 50%;">
     <figcaption>
@@ -435,7 +435,7 @@
   </ul>
 <hr>
 
-<h2>Space Invaders X</h2>
+<h2>Space Invaders X (June - August 2024)</h2>
   <div class="grid2">
     <div>
       <figure>
@@ -472,5 +472,58 @@
 
 <hr>
 
+<h1>
+  Future Projects
+</h1>
+  <p>
+    Projects that are currently being planned and concepts that I wouold like to further explore. These descriptions contain skills
+    that I am eager to learn and apply. 
+  </p>
+<h2>
+  Image Decompressor Mimicking JPEG standards (October - November 2025)
+</h2>
+  <p>
+    This project will be using Python, SystemVerilog (through Quartus), ModelSim for RTL verification, a VGA-screen as well. 
+    The general processes and implementation goes as follows: 
+  </p>
+  <ul>
+    <li>
+      Conducts Chroma and Luma seperation, down sampling, discrete cosine transforms, quatization and the lossless encoding through Python
+    </li>
+    <li>
+      Sends the encoded data through UART and stored in the dual-port SRAM cells of the 
+      DE-115 Cyclone IV FPGA. This will be where the FPGA board will conduct the lossless decoding, dequantization, upsampling
+      and the inverse seperation of the luma and chroma parts of the image. 
+    </li>
+    <li>
+      Post decoding, the hardware design will output the decompressed image on a VGA screen at a specified resolution and frame rate.
+      A VGA controller script will also be made to carry this out. 
+    </li>
+  </ul>
+<hr>
+<h2>
+  Handheld Custom LCD Game Console
+</h2>
+  <p>
+    I want to expand on the LCD game console I made before, and improve its functionality and look. This project will involve
+    a custom PCD that will hold both the lcd screen and joystick controller, an improvement from the wirey mess from before. 
+    I also want to figure out how to power it independently from my laptop. ie how to make it battery powered. Cartridges are 
+    also a fun idea to figure out. This would allow me to modularize the console and give me the flexibility of making new games
+    and switching them out. The skills required would be:
+  </p>
+  <ul>
+    <li>
+      Creating working PCD design and minizing cost of the materials.
+    </li>
+    <li>
+      Minimizing power usage of a battery
+    </li>
+    <li>
+      Creating electrical connections that can be safely disconnected (for the cartidges)
+    </li>
+    <li>
+      etc. 
+    </li>
+  </ul>
 </body>
 <html>
